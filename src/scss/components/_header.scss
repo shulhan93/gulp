@@ -1,0 +1,96 @@
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    background-color: green;
+
+    &__body {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__burger {
+        display: none;
+        position: relative;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+
+        @include media-tablet {
+            display: block;
+        }
+
+        &::before,
+        &:after {
+            content: "";
+            background-color: #fff;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        &::before {
+            top: 0;
+        }
+
+        &::after {
+            bottom: 0;
+        }
+
+        &.active::before {
+            transform: rotate(45deg);
+            top: 9px;
+        }
+
+        &.active::after {
+            transform: rotate(-45deg);
+            bottom: 9px;
+        }
+
+        &.active span {
+            transform: scale(0);
+        }
+
+        span {
+            position: absolute;
+            background-color: #fff;
+            height: 2px;
+            left: 0;
+            top: 9px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+    }
+
+    &__menu {
+        @include media-tablet {
+            position: fixed;
+            left: 0;
+            top: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: blue;
+            transition: all 0.3s;
+        }
+
+        &.active {
+            top: 50px;
+        }
+    }
+
+    &__list {
+        display: flex;
+
+        @include media-tablet {}
+    }
+
+    &__list li {
+        list-style: none;
+    }
+
+    &__link {}
+}

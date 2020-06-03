@@ -13,9 +13,9 @@
 //========== base ==========
 @import 'base/variables';
 @import 'base/_mixins';
-@import 'base/grid';
 @import 'base/normalize';
-@import 'fonts';
+@import 'base/fonts';
+@import 'base/container';
 
 //========== Components ==========
 @import 'components/header';
