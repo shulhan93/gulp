@@ -15,6 +15,7 @@ let path = {
         html: [source_folder + "/*.html", "!" + source_folder + "/_*.html"],
         css: source_folder + "/scss/style.scss",
         js: source_folder + "/js/script.js",
+        jsLibs: source_folder + "/js/libs/*.js",
         img: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
         fonts: source_folder + "/fonts/*.ttf",
     },
@@ -48,7 +49,8 @@ let {
     webpcss = require("gulp-webpcss"),
     ttf2woff = require("gulp-ttf2woff"),
     ttf2woff2 = require("gulp-ttf2woff2"),
-    fonter = require("gulp-fonter");
+    fonter = require("gulp-fonter"),
+    concat = require('gulp-concat');
 
 function browserSync(param) {
     browsersync.init({
@@ -94,13 +96,19 @@ function css() {
         .pipe(browsersync.stream());
 }
 
-function jsCopy() {
+/* function jsCopy() {
     return src(path.watch.js)
         .pipe(dest(path.build.js))
+} */
+
+function jsConcat() {
+    return src(path.src.jsLibs)
+        .pipe(concat('libs.js'))
+        .pipe(dest(`${path.build.js}/libs/`))
 }
 
 function js() {
-    jsCopy()
+    jsConcat()
     return src(path.src.js)
         .pipe(fileinclude())
         .pipe(
