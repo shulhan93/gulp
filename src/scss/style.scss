@@ -1,0 +1,14 @@
+.box {
+  @media (max-width: 200px) {
+    font-size: 30px;
+  }
+}
+
+.box2 {
+  width: 100px;
+  height: 100px;
+  background-image: url(@img/Image.jpg);
+  @media (max-width: 200px) {
+    font-size: 50px;
+  }
+}
